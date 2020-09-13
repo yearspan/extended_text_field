@@ -177,7 +177,7 @@ class ExtendedRenderEditable extends ExtendedTextSelectionRenderObject {
         assert(textWidthBasis != null),
         assert(paintCursorAboveText != null),
         assert(obscuringCharacter != null &&
-            obscuringCharacter.characters.length == 1),
+            obscuringCharacter.length == 1),
         assert(obscureText != null),
         assert(textSelectionDelegate != null),
         assert(cursorWidth != null && cursorWidth >= 0.0),
@@ -301,7 +301,7 @@ class ExtendedRenderEditable extends ExtendedTextSelectionRenderObject {
     if (_obscuringCharacter == value) {
       return;
     }
-    assert(value != null && value.characters.length == 1);
+    assert(value != null && value.length == 1);
     _obscuringCharacter = value;
     markNeedsLayout();
   }
@@ -560,19 +560,7 @@ class ExtendedRenderEditable extends ExtendedTextSelectionRenderObject {
       return string.length;
     }
 
-    int count = 0;
-    final Characters remaining =
-        string.characters.skipWhile((String currentString) {
-      if (count <= index) {
-        count += currentString.length;
-        return true;
-      }
-      if (includeWhitespace) {
-        return false;
-      }
-      return _isWhitespace(currentString.codeUnitAt(0));
-    });
-    return string.length - remaining.toString().length;
+    return string.substring(index,string.length).length;
   }
 
   /// Returns the index into the string of the previous character boundary
@@ -596,10 +584,11 @@ class ExtendedRenderEditable extends ExtendedTextSelectionRenderObject {
 
     int count = 0;
     int lastNonWhitespace;
-    for (final String currentString in string.characters) {
+    for (int i=0; i< string.length; i++) {
+      String currentString = string.substring(i);
       if (!includeWhitespace &&
           !_isWhitespace(
-              currentString.characters.first.toString().codeUnitAt(0))) {
+              currentString.toString().codeUnitAt(0))) {
         lastNonWhitespace = count;
       }
       if (count + currentString.length >= index) {
