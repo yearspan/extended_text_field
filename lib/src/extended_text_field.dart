@@ -721,11 +721,11 @@ class _ExtendedTextFieldState extends State<ExtendedTextField>
 
   bool get _isEnabled => widget.enabled ?? widget.decoration?.enabled ?? true;
 
-  int get _currentLength => _effectiveController.value.text.characters.length;
+  int get _currentLength => _effectiveController.value.text.length;
   bool get _hasIntrinsicError =>
       widget.maxLength != null &&
       widget.maxLength > 0 &&
-      _effectiveController.value.text.characters.length > widget.maxLength;
+      _effectiveController.value.text.length > widget.maxLength;
   bool get _hasError =>
       widget.decoration?.errorText != null || _hasIntrinsicError;
   InputDecoration _getEffectiveDecoration() {
@@ -1073,7 +1073,7 @@ class _ExtendedTextFieldState extends State<ExtendedTextField>
     }
     final MouseCursor effectiveMouseCursor =
         MaterialStateProperty.resolveAs<MouseCursor>(
-      widget.mouseCursor ?? MaterialStateMouseCursor.textable,
+      widget.mouseCursor ?? MaterialStateMouseCursor.clickable,
       <MaterialState>{
         if (!_isEnabled) MaterialState.disabled,
         if (_isHovering) MaterialState.hovered,
