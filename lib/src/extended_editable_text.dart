@@ -222,7 +222,7 @@ class ExtendedEditableText extends StatefulWidget {
                 autofillHints: autofillHints, maxLines: maxLines),
         inputFormatters = maxLines == 1
             ? <TextInputFormatter>[
-                FilteringTextInputFormatter.singleLineFormatter,
+                BlacklistingTextInputFormatter.singleLineFormatter,
                 ...inputFormatters ??
                     const Iterable<TextInputFormatter>.empty(),
               ]
@@ -831,40 +831,40 @@ class ExtendedEditableText extends StatefulWidget {
         case TargetPlatform.macOS:
           const Map<String, TextInputType> iOSKeyboardType =
               <String, TextInputType>{
-            AutofillHints.addressCity: TextInputType.name,
+            AutofillHints.addressCity: TextInputType.text,
             AutofillHints.addressCityAndState:
-                TextInputType.name, // Autofill not working.
-            AutofillHints.addressState: TextInputType.name,
-            AutofillHints.countryName: TextInputType.name,
+                TextInputType.text, // Autofill not working.
+            AutofillHints.addressState: TextInputType.text,
+            AutofillHints.countryName: TextInputType.text,
             AutofillHints.creditCardNumber:
                 TextInputType.number, // Couldn't test.
             AutofillHints.email: TextInputType.emailAddress,
-            AutofillHints.familyName: TextInputType.name,
-            AutofillHints.fullStreetAddress: TextInputType.name,
-            AutofillHints.givenName: TextInputType.name,
-            AutofillHints.jobTitle: TextInputType.name, // Autofill not working.
-            AutofillHints.location: TextInputType.name, // Autofill not working.
+            AutofillHints.familyName: TextInputType.text,
+            AutofillHints.fullStreetAddress: TextInputType.text,
+            AutofillHints.givenName: TextInputType.text,
+            AutofillHints.jobTitle: TextInputType.text, // Autofill not working.
+            AutofillHints.location: TextInputType.text, // Autofill not working.
             AutofillHints.middleName:
-                TextInputType.name, // Autofill not working.
-            AutofillHints.name: TextInputType.name,
+                TextInputType.text, // Autofill not working.
+            AutofillHints.name: TextInputType.text,
             AutofillHints.namePrefix:
-                TextInputType.name, // Autofill not working.
+                TextInputType.text, // Autofill not working.
             AutofillHints.nameSuffix:
-                TextInputType.name, // Autofill not working.
+                TextInputType.text, // Autofill not working.
             AutofillHints.newPassword: TextInputType.text,
             AutofillHints.newUsername: TextInputType.text,
-            AutofillHints.nickname: TextInputType.name, // Autofill not working.
+            AutofillHints.nickname: TextInputType.text, // Autofill not working.
             AutofillHints.oneTimeCode: TextInputType.number,
             AutofillHints.organizationName:
                 TextInputType.text, // Autofill not working.
             AutofillHints.password: TextInputType.text,
-            AutofillHints.postalCode: TextInputType.name,
-            AutofillHints.streetAddressLine1: TextInputType.name,
+            AutofillHints.postalCode: TextInputType.text,
+            AutofillHints.streetAddressLine1: TextInputType.text,
             AutofillHints.streetAddressLine2:
-                TextInputType.name, // Autofill not working.
+                TextInputType.text, // Autofill not working.
             AutofillHints.sublocality:
-                TextInputType.name, // Autofill not working.
-            AutofillHints.telephoneNumber: TextInputType.name,
+                TextInputType.text, // Autofill not working.
+            AutofillHints.telephoneNumber: TextInputType.text,
             AutofillHints.url: TextInputType.url, // Autofill not working.
             AutofillHints.username: TextInputType.text,
           };
@@ -884,9 +884,9 @@ class ExtendedEditableText extends StatefulWidget {
 
     const Map<String, TextInputType> inferKeyboardType =
         <String, TextInputType>{
-      AutofillHints.addressCity: TextInputType.streetAddress,
-      AutofillHints.addressCityAndState: TextInputType.streetAddress,
-      AutofillHints.addressState: TextInputType.streetAddress,
+      AutofillHints.addressCity: TextInputType.text,
+      AutofillHints.addressCityAndState: TextInputType.text,
+      AutofillHints.addressState: TextInputType.text,
       AutofillHints.birthday: TextInputType.datetime,
       AutofillHints.birthdayDay: TextInputType.datetime,
       AutofillHints.birthdayMonth: TextInputType.datetime,
@@ -897,27 +897,27 @@ class ExtendedEditableText extends StatefulWidget {
       AutofillHints.creditCardExpirationDay: TextInputType.datetime,
       AutofillHints.creditCardExpirationMonth: TextInputType.datetime,
       AutofillHints.creditCardExpirationYear: TextInputType.datetime,
-      AutofillHints.creditCardFamilyName: TextInputType.name,
-      AutofillHints.creditCardGivenName: TextInputType.name,
-      AutofillHints.creditCardMiddleName: TextInputType.name,
-      AutofillHints.creditCardName: TextInputType.name,
+      AutofillHints.creditCardFamilyName: TextInputType.text,
+      AutofillHints.creditCardGivenName: TextInputType.text,
+      AutofillHints.creditCardMiddleName: TextInputType.text,
+      AutofillHints.creditCardName: TextInputType.text,
       AutofillHints.creditCardNumber: TextInputType.number,
       AutofillHints.creditCardSecurityCode: TextInputType.number,
       AutofillHints.creditCardType: TextInputType.text,
       AutofillHints.email: TextInputType.emailAddress,
-      AutofillHints.familyName: TextInputType.name,
-      AutofillHints.fullStreetAddress: TextInputType.streetAddress,
+      AutofillHints.familyName: TextInputType.text,
+      AutofillHints.fullStreetAddress: TextInputType.text,
       AutofillHints.gender: TextInputType.text,
-      AutofillHints.givenName: TextInputType.name,
+      AutofillHints.givenName: TextInputType.text,
       AutofillHints.impp: TextInputType.url,
       AutofillHints.jobTitle: TextInputType.text,
       AutofillHints.language: TextInputType.text,
-      AutofillHints.location: TextInputType.streetAddress,
-      AutofillHints.middleInitial: TextInputType.name,
-      AutofillHints.middleName: TextInputType.name,
-      AutofillHints.name: TextInputType.name,
-      AutofillHints.namePrefix: TextInputType.name,
-      AutofillHints.nameSuffix: TextInputType.name,
+      AutofillHints.location: TextInputType.text,
+      AutofillHints.middleInitial: TextInputType.text,
+      AutofillHints.middleName: TextInputType.text,
+      AutofillHints.name: TextInputType.text,
+      AutofillHints.namePrefix: TextInputType.text,
+      AutofillHints.nameSuffix: TextInputType.text,
       AutofillHints.newPassword: TextInputType.text,
       AutofillHints.newUsername: TextInputType.text,
       AutofillHints.nickname: TextInputType.text,
@@ -925,18 +925,18 @@ class ExtendedEditableText extends StatefulWidget {
       AutofillHints.organizationName: TextInputType.text,
       AutofillHints.password: TextInputType.text,
       AutofillHints.photo: TextInputType.text,
-      AutofillHints.postalAddress: TextInputType.streetAddress,
-      AutofillHints.postalAddressExtended: TextInputType.streetAddress,
+      AutofillHints.postalAddress: TextInputType.text,
+      AutofillHints.postalAddressExtended: TextInputType.text,
       AutofillHints.postalAddressExtendedPostalCode: TextInputType.number,
       AutofillHints.postalCode: TextInputType.number,
-      AutofillHints.streetAddressLevel1: TextInputType.streetAddress,
-      AutofillHints.streetAddressLevel2: TextInputType.streetAddress,
-      AutofillHints.streetAddressLevel3: TextInputType.streetAddress,
-      AutofillHints.streetAddressLevel4: TextInputType.streetAddress,
-      AutofillHints.streetAddressLine1: TextInputType.streetAddress,
-      AutofillHints.streetAddressLine2: TextInputType.streetAddress,
-      AutofillHints.streetAddressLine3: TextInputType.streetAddress,
-      AutofillHints.sublocality: TextInputType.streetAddress,
+      AutofillHints.streetAddressLevel1: TextInputType.text,
+      AutofillHints.streetAddressLevel2: TextInputType.text,
+      AutofillHints.streetAddressLevel3: TextInputType.text,
+      AutofillHints.streetAddressLevel4: TextInputType.text,
+      AutofillHints.streetAddressLine1: TextInputType.text,
+      AutofillHints.streetAddressLine2: TextInputType.text,
+      AutofillHints.streetAddressLine3: TextInputType.text,
+      AutofillHints.sublocality: TextInputType.text,
       AutofillHints.telephoneNumber: TextInputType.phone,
       AutofillHints.telephoneNumberAreaCode: TextInputType.phone,
       AutofillHints.telephoneNumberCountryCode: TextInputType.phone,
@@ -2151,7 +2151,7 @@ class ExtendedEditableTextState extends State<ExtendedEditableText>
                 textDirection: _textDirection,
                 locale: widget.locale,
                 textHeightBehavior: widget.textHeightBehavior ??
-                    DefaultTextHeightBehavior.of(context),
+                    TextHeightBehavior(),
                 textWidthBasis: widget.textWidthBasis,
                 obscuringCharacter: widget.obscuringCharacter,
                 obscureText: widget.obscureText,
