@@ -826,7 +826,7 @@ class _ExtendedTextFieldState extends State<ExtendedTextField>
 
   bool get _canRequestFocus {
     final NavigationMode mode =
-        MediaQuery.of(context, nullOk: true)?.navigationMode ??
+        MediaQuery.of(context)?.navigationMode ??
             NavigationMode.traditional;
     switch (mode) {
       case NavigationMode.traditional:
